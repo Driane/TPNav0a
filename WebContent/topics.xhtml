@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head></h:head>
+<body>
+<f:view locale="#{languageController.locale}"/>
+<h:form>
+<h:outputText value="#{loggedUser.login}"/>  <h:commandLink action="login" value="Deconnexion" />
+
+	<h1>Liste des fils de discussion</h1>
+
+<h:commandLink action="ajoutTopic" value="Ajouter un topic" />
+
+	<h:dataTable value="#{topicController.topics}" var="_topic" binding="#{topicController.dataTable}">
+		<h:column>
+			<f:facet name="header">Titre</f:facet>
+			<h:commandLink action="#{topicController.selectTopic}" value="#{_topic.title}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Description</f:facet>
+			<h:outputText value="#{_topic.description}" />
+		</h:column>
+	</h:dataTable>
+		<h:commandButton action="cancel" value="Cancel"></h:commandButton>
+</h:form>
+</body>
+</html>
